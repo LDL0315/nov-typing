@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>诺如病毒分型工具</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <div class="brand-mark">NV</div>
+          <div>
+            <p class="eyebrow" data-i18n="eyebrow">Norovirus Genotyping Platform</p>
+            <h1 data-i18n="appTitle">诺如病毒分型分析系统</h1>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <div class="language-switch" aria-label="Language">
+            <button class="language-option active" data-lang="zh" type="button">中文</button>
+            <button class="language-option" data-lang="en" type="button">EN</button>
+          </div>
+          <div class="topbar-meta">
+            <span data-i18n="localLibrary">本地参考库</span>
+            <strong id="libraryStatus">加载中</strong>
+          </div>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <section class="input-panel" aria-labelledby="inputTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="inputTitle" data-i18n="inputTitle">序列提交</h2>
+              <p data-i18n="inputSubtitle">FASTA / 多条序列 / 原始核酸序列</p>
+            </div>
+            <button class="ghost-button" id="loadExample" type="button" data-i18n="loadExample">载入示例</button>
+          </div>
+
+          <textarea
+            id="sequenceInput"
+            spellcheck="false"
+            placeholder=">sample-01&#10;ATGAAGATGGCGTCGAATGACGCC..."
+          ></textarea>
+
+          <div class="input-actions">
+            <label class="file-button">
+              <input id="fileInput" type="file" accept=".fa,.fasta,.fas,.txt" />
+              <span data-i18n="chooseFile">选择文件</span>
+            </label>
+            <button class="primary-button" id="runButton" type="button" data-i18n="runTyping">开始分型</button>
+          </div>
+
+          <div class="settings-grid">
+            <label>
+              <span data-i18n="minOverlap">最小重叠长度</span>
+              <input id="minOverlap" type="number" min="60" max="300" value="100" />
+            </label>
+            <label>
+              <span data-i18n="vp1Threshold">VP1 身份阈值</span>
+              <input id="vp1Threshold" type="number" min="50" max="100" value="80" />
+            </label>
+            <label>
+              <span data-i18n="rdrpThreshold">RdRp 身份阈值</span>
+              <input id="rdrpThreshold" type="number" min="50" max="100" value="85" />
+            </label>
+            <label>
+              <span data-i18n="kmerSize">k-mer 大小</span>
+              <input id="kSize" type="number" min="9" max="15" value="13" />
+            </label>
+            <label>
+              <span data-i18n="candidateLimit">候选数上限</span>
+              <input id="candidateLimit" type="number" min="10" max="100" value="20" />
+            </label>
+            <label>
+              <button class="ghost-button" id="rebuildIndex" type="button" data-i18n="rebuildIndex">重建索引</button>
+            </label>
+          </div>
+        </section>
+
+        <section class="result-panel" aria-labelledby="resultTitle">
+          <div class="section-head">
+            <div>
+              <h2 id="resultTitle" data-i18n="resultTitle">分型结果</h2>
+              <p id="summaryLine">等待序列提交</p>
+            </div>
+            <button class="ghost-button" id="downloadButton" type="button" disabled data-i18n="downloadCsv">下载 CSV</button>
+          </div>
+
+          <div class="library-strip" id="libraryStrip"></div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th data-i18n="sample">样本</th>
+                  <th data-i18n="dualType">双分型</th>
+                  <th data-i18n="gii4Variant">GII.4 变异株</th>
+                  <th>VP1</th>
+                  <th>RdRp</th>
+                  <th data-i18n="direction">方向</th>
+                  <th data-i18n="decision">判定</th>
+                </tr>
+              </thead>
+              <tbody id="resultBody">
+                <tr>
+                  <td colspan="7" class="empty-state" data-i18n="submitAfterLibrary">参考库加载完成后提交序列</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="detail-area" id="detailArea"></div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <span data-i18n="copyrightOwner">软件版权归属：广东省科学院微生物研究所打包蕾研发团队</span>
+        <span>Copyright © 2026 Norovirus Genotyping Tool. All Rights Reserved.</span>
+      </footer>
+    </div>
+
+    <script src="app.js?v=2026.05.24"></script>
+  </body>
+</html>
