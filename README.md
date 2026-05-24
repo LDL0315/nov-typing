@@ -106,37 +106,11 @@ nov-typing/
 
 ---
 
-## 🌐 部署指南
+## 🌐 数据库更新
 
-本项目为纯静态前端，可一键部署至任意静态托管平台：
-
-| 平台 | 部署方式 |
-|------|----------|
-| **Vercel** | 导入 GitHub 仓库，自动部署 |
-| **GitHub Pages** | Settings → Pages → 选择 main 分支 |
-| **Netlify** | 拖拽上传或关联 Git 仓库 |
-| **Cloudflare Pages** | 关联 Git 仓库自动构建 |
-
-### Vercel 一键部署
-
-1. 登录 [Vercel](https://vercel.com)，点击 `Add New Project`
-2. 导入 `LDL0315/nov-typing` 仓库
-3. Framework Preset 选择 `Other`（纯静态）
-4. 点击 `Deploy`，约 10 秒后上线
-
----
-
-## 🖥️ 使用截图
-
-<p align="center">
-  <i>主界面：序列提交与参数设置</i>
-</p>
-
-<p align="center">
-  <i>结果展示：分型表格与 CSV 导出</i>
-</p>
-
----
+本软件参考  **[杯状病毒委员会Human Calicivirus数据库](https://calicivirustypingtool.cdc.gov/becerance.cgi)**
+已同步更新为April 27, 2026版本
+感谢杯状病毒委员会的工作和支持！
 
 ## 📝 更新日志
 
@@ -161,5 +135,5 @@ nov-typing/
 ---
 
 <p align="center">
-  Made with ❤️ by <a href="https://github.com/LDL0315">LDL0315</a>
+  Made by <a href="https://github.com/LDL0315">LDL0315</a>
 </p>
