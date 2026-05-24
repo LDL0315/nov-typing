@@ -65,7 +65,7 @@ const I18N = {
     variantCandidates: "GII.4 变异株候选",
     noCandidates: "无候选",
     signatureTitle: "最佳命中局部一致性概览",
-    copyrightOwner: "软件版权归属：广东省科学院微生物研究所打包蕾研发团队",
+    copyrightOwner: "软件版权归属：广东省科学院微生物研究所食源性病毒污染与防控研究团队",
   },
   en: {
     pageTitle: "Norovirus Genotyping Tool",
@@ -118,7 +118,8 @@ const I18N = {
     variantCandidates: "GII.4 variant candidates",
     noCandidates: "No candidates",
     signatureTitle: "Best-hit local identity overview",
-    copyrightOwner: "Software copyright: Dabao Lei R&D Team",
+    copyrightOwner:
+      "Software copyright: Foodborne Virus Contamination and Control Research Team, Institute of Microbiology, Guangdong Academy of Sciences",
   },
 };
 
