@@ -21,15 +21,17 @@
 
 无需安装任何软件，无需配置服务器环境，打开网页即可使用。
 
-> 🔗 **在线体验**：https://nov-typing.vercel.app/
+
+> 🔗 **在线体验**：https://nov-typing.vercel.app/ or https://cheery-horse-558665.netlify.app/
 
 ---
+
 
 ## ✨ 功能特点
 
 - ✅ **完全离线可用** — 参考库随项目本地加载，无需联网调用外部 API
 - ✅ **支持多种输入格式** — FASTA、多 FASTA、原始核酸序列直接粘贴
-- ✅ **双片段联合分型** — 同时分析 VP1 和 RdRp，输出组合型别（如 `GII.P17_GII.4`）
+- ✅ **双片段联合分型** — 同时分析 VP1 和 RdRp，输出组合型别（如 `GII.17[P17]`、`GII.4 Sydney[P16]`）
 - ✅ **双向比对** — 自动尝试正向与反向互补序列
 - ✅ **参数可调** — 支持自定义重叠长度阈值、身份阈值、k-mer 大小及候选数上限
 - ✅ **结果导出** — 一键导出 CSV 格式的分型报告
@@ -44,6 +46,7 @@
 直接访问部署好的站点：
 
 👉 **[https://nov-typing.vercel.app/](https://nov-typing.vercel.app/)**
+👉 **[https://cheery-horse-558665.netlify.app/](https://cheery-horse-558665.netlify.app/)**
 
 ### 方式二：本地运行
 
@@ -53,10 +56,10 @@ git clone https://github.com/LDL0315/nov-typing.git
 cd nov-typing
 
 # 启动本地服务器（必须，否则浏览器会阻止读取 reference 目录）
-python3 -m http.server 4173
+python3 -m http.server 8088
 
 # 浏览器打开
-open http://localhost:4173
+open http://localhost:8088
 ```
 
 > ⚠️ **注意**：直接双击 `index.html` 打开可能导致 `reference/` 目录读取失败，请务必通过本地服务器访问。
@@ -74,8 +77,10 @@ open http://localhost:4173
    - VP1 身份阈值：**80%**
    - RdRp 身份阈值：**85%**
 6. **分型输出**：
-   - 双片段均通过 → 输出组合分型（如 `GII.P17_GII.17`）
-   - 仅单片段通过 → 输出单片段结果
+   - 双片段均通过 → 按 VP1 在前、RdRp 在方括号内输出组合分型（如 `GII.17[P17]`）
+   - GII.4 VP1 命中变异株 → 在 VP1 型别后追加变异株名（如 `GII.4 Sydney[P16]`）
+   - 仅 VP1 片段通过 → 输出 VP1 结果并标记 RdRp 未定型（如 `GII.4 Sydney[P untypeable]`）
+   - 仅 RdRp 片段通过 → 输出 RdRp 单片段结果
 
 ### 性能参数
 
@@ -116,7 +121,7 @@ nov-typing/
 
 - **2026-05** — 项目上线，支持 VP1 / RdRp 双片段联合分型
 - **2026-05** — 新增 k-mer 预筛选与候选数上限配置，优化全基因组比对性能
-
+- **2026-05** — 更新双重命名法结果展示，符合双重命名法规则
 ---
 
 ## 🤝 贡献
@@ -135,5 +140,5 @@ nov-typing/
 ---
 
 <p align="center">
-  Made by <a href="https://github.com/LDL0315">LDL0315</a>
+  Made by <a href="https://github.com/LDL0315">LDL0315</a> using codex.
 </p>

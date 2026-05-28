@@ -440,7 +440,11 @@ async function typeQuery(query, index, options) {
     vp1Call: vp1Pass ? topVp1.ref.genotype : "undetermined",
     rdrpCall: rdrpPass ? topRdrp.ref.genotype : "undetermined",
     variantCall,
-    combinedCall: buildCombinedCall(vp1Pass ? topVp1.ref.genotype : "", rdrpPass ? topRdrp.ref.genotype : ""),
+    combinedCall: buildCombinedCall(
+      vp1Pass ? topVp1.ref.genotype : "",
+      rdrpPass ? topRdrp.ref.genotype : "",
+      variantCall,
+    ),
     status: buildStatus(vp1Pass, rdrpPass, topVp1, topRdrp),
   };
 }
@@ -541,9 +545,22 @@ function passes(match, threshold, minOverlap) {
   return Boolean(match && match.identity >= threshold && match.overlap >= minOverlap);
 }
 
-function buildCombinedCall(vp1, rdrp) {
-  if (vp1 && rdrp) return `${rdrp}_${vp1}`;
-  return vp1 || rdrp || "undetermined";
+function buildCombinedCall(vp1, rdrp, variant = "") {
+  if (vp1 && vp1 !== "undetermined") return `${formatVp1ForDualCall(vp1, variant)}[${formatRdrpForDualCall(rdrp)}]`;
+  return rdrp || "undetermined";
+}
+
+function formatVp1ForDualCall(vp1, variant) {
+  if (vp1 === "GII.4" && variant && !["notApplicable", "variantUnassigned"].includes(variant)) {
+    return `${vp1} ${variant}`;
+  }
+  return vp1;
+}
+
+function formatRdrpForDualCall(rdrp) {
+  if (!rdrp || rdrp === "undetermined") return "P untypeable";
+  const match = rdrp.match(/^G[IVX]+\.(P.+)$/i);
+  return match ? match[1] : rdrp;
 }
 
 function buildStatus(vp1Pass, rdrpPass, topVp1, topRdrp) {
@@ -725,7 +742,7 @@ function downloadCsv() {
   const rows = [
     [
       "sample",
-      "combined",
+      "dual_type",
       "gii4_variant",
       "vp1",
       "vp1_identity",
